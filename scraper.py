@@ -21,6 +21,7 @@ def scrape_case_details(case_type, case_number, filing_year):
 
 
     # Initialize driver with webdriver-manager
+    chrome_options.binary_location = "/usr/bin/google-chrome"
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
     try:
