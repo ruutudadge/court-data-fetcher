@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: court-data-fetcher
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: USE_DEMO
+        value: True
+      - key: FLASK_ENV
+        value: production

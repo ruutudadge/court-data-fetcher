@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h2>eCourts Portal</h2>
+        <p>Case Details Viewer</p>
+    </header>
+
+    <div class="overlay"></div>
+    <div class="container">
+        <h1 class="title">Case Details</h1>
+        
+        <!-- New Dynamic Case Details -->
+        <div class="case-dynamic">
+            <h2>Case Details</h2>
+            <div>{{ case_details|safe }}</div>
+        </div>
+
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active">Details</button>
+                <button class="tab">Orders</button>
+                <button class="tab">Timeline</button>
+            </div>
+            <div class="tab-content">
+                <p><strong>Petitioner:</strong> {{ petitioner }}</p>
+                <p><strong>Respondent:</strong> {{ respondent }}</p>
+                <p><strong>Filing Date:</strong> {{ filing_date }}</p>
+                <p><strong>Next Hearing:</strong> {{ next_hearing }}</p>
+            </div>
+        </div>
+        <a href="/" class="btn back-btn">Search Again</a>
+    </div>
+</body>
+</html>

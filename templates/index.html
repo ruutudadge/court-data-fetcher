@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Court Case Data Fetcher</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static.css') }}">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1 class="title">Court Case Data Fetcher</h1>
+        <form action="/result" method="POST" class="form-box">
+            <div class="form-group">
+                <label for="case_type">Case Type</label>
+                <select name="case_type" id="case_type">
+                    <option>Select</option>
+                    <option>Civil</option>
+                    <option>Criminal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="case_number">Case Number</label>
+                <input type="text" name="case_number" id="case_number" placeholder="1234">
+            </div>
+            <div class="form-group">
+                <label for="filing_year">Filing Year</label>
+                <input type="text" name="filing_year" id="filing_year" placeholder="2019">
+            </div>
+            <button type="submit" class="btn">Fetch Case Details</button>
+        </form>
+    </div>
+</body>
+</html>
