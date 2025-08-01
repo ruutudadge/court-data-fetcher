@@ -1,48 +1,94 @@
-Court Case Data Dashboard
-This project was built for the internship task: Court Case Data Dashboard Using Web Scraping.
+⚖️ Court Data Fetcher & Mini-Dashboard
+A sleek legal-tech dashboard to fetch Delhi High Court case details in real-time.
 
-✅ Project Overview
-This Flask-based web application allows users to enter Indian court case details (case type, number, and year), and fetches real-time data from the eCourts India portal using web scraping.
 
-🔍 Technologies Used:
-Python
-Flask
-BeautifulSoup (for scraping)
-Bootstrap (for UI)
-📥 User Inputs:
-Case Type: (e.g., MACP, CIVI, CR, NIA)
-Case Number: (e.g., 1234)
-Filing Year: (e.g., 2018)
-✅ These are entered on the web form and submitted to fetch case status.
+🏛 Overview
 
-📤 Output Shown:
-Case Title (e.g., MACP No. 1416/2017)
-Petitioner vs Respondent
-Filing Date
-Next Hearing Date
-Latest Order (PDF Link if available)
-⚠️ Valid Input Note:
-This project depends on real data from https://services.ecourts.gov.in. Please use actual, verifiable court case details for accurate results.
+Court Data Fetcher provides instant case insights from the Delhi High Court portal:
 
-Example (you must verify on portal first):
+Parties involved (Petitioner vs Respondent)
 
-Case Type: CIVI
-Case No: 123
-Year: 2019
-If values are invalid, you will see: ❌ “Invalid input or court not supported”
+Filing dates, next hearings, and case status
 
-▶ How to Run
+Downloadable orders & judgments
+
+Search history with export options
+
+
+🚀 Features
+
+🔍 Smart Search – Query by case type, number, and year
+
+📄 Case Metadata – Extract parties, dates, and current status
+
+📥 PDF Downloads – Direct access to orders/judgments
+
+🕒 History Tracker – Persistent search log with CSV export
+
+🛡 Captcha-Friendly – Manual solve with Selenium automation
+
+📱 Responsive UI – Mobile-first Bootstrap 5 design
+
+
+🛠 Tech Stack
+
+Backend: Flask (Python)
+Frontend: HTML5, CSS3, Bootstrap 5
+Scraping: Selenium WebDriver (Headless Chrome)
+Database: SQLite (SQLAlchemy ORM)
+Deployment: Docker + Gunicorn on Render
+
+
+⚡ Quick Setup
+
+bash
+Copy
+Edit
+# Clone repository
+git clone <repository-url>
+cd court-data-fetcher
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
-python app.py
-Visit http://127.0.0.1:5000 in your browser.
 
-✅ Submission Checklist (from PDF requirements)
- Web Interface (index.html with Bootstrap UI)
- Flask Backend
- Web Scraper using BeautifulSoup
- Displays Petitioner, Respondent, Dates, PDF
- Handles invalid inputs with error message
- requirements.txt included
- README with clear instructions ✅
-Court-Data Fetcher & Mini-Dashboard
-Deploy Status
+# Run locally
+python app.py
+Access via http://localhost:5000
+
+🐳 Docker Deploy
+
+bash
+Copy
+Edit
+docker build -t court-data-fetcher.
+docker run -p 5000:5000 court-data-fetcher
+🔌 API Endpoint
+GET /api/case-data/<query_id>
+Returns JSON with case details (parties, filing date, next hearing, status, etc.).
+
+🧩 Project Structure
+csharp
+Copy
+Edit
+Court-Data-Fetcher/
+├── app.py
+├── requirements.txt
+├── templates/       # HTML templates
+├── static/          # CSS/JS/images
+├── data/            # SQLite database
+├── Dockerfile
+└── README.md
+
+
+⚖ Legal & Disclaimer
+
+Fetches public data only
+
+Complies with court website’s terms of service
+
+For educational use — not for spam or misuse
+
