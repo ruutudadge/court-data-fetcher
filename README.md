@@ -1,4 +1,5 @@
 ⚖️ Court Data Fetcher & Mini-Dashboard
+
 A sleek legal-tech dashboard to fetch Delhi High Court case details in real-time.
 
 
