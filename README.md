@@ -1,95 +1,65 @@
-⚖️ Court Data Fetcher & Mini-Dashboard
+# ⚖️ Court Data Fetcher & Mini-Dashboard
 
-A sleek legal-tech dashboard to fetch Delhi High Court case details in real-time.
+> A modern web application for fetching and visualizing Delhi High Court case data with Selenium, Flask, and a responsive UI.
 
+![Court Dashboard Preview](./static/images/dashboard-preview.png)  
+*(Add your screenshot or mockup here)*
 
-🏛 Overview
+---
 
-Court Data Fetcher provides instant case insights from the Delhi High Court portal:
+## 🏛 Overview
 
-Parties involved (Petitioner vs Respondent)
+Court Data Fetcher is a **law-focused dashboard** that scrapes case information directly from the [Delhi High Court](https://delhihighcourt.nic.in/) website.  
+It allows users to **search by case type, number, and filing year**, view case metadata, download orders/judgments, and track search history — all in one place.
 
-Filing dates, next hearings, and case status
+---
 
-Downloadable orders & judgments
+## ✨ Features
 
-Search history with export options
+### 🎯 Core Functionality
+- **Automated Web Scraping**: Selenium-driven extraction of live court data  
+- **Modern Search Interface**: Dropdowns, clean form validation, responsive UI  
+- **Case Details Display**: Petitioner/respondent info, dates, status, and orders  
+- **Search History**: Persistent logging with SQLite storage  
+- **Error Handling**: Graceful fallbacks and mock data for uninterrupted workflow
 
+### 🚀 Advanced Features
+- **REST API**: Programmatic endpoints for external integrations  
+- **Mini Dashboard**: Real-time metrics (search count, recent activity)  
+- **PDF Management**: Downloadable court orders and judgments  
+- **Pagination**: Handle multiple order pages seamlessly  
+- **Offline Mode**: Mock data for dev/test environments
 
-🚀 Features
+### 🛠 Production-Ready
+- **Dockerized Deployment**: Run anywhere with Docker & Compose  
+- **Headless Chrome Support**: Optimized for cloud hosting (Render/Heroku)  
+- **CI/CD Ready**: Integrate with GitHub Actions for auto-deploy  
+- **Security**: Input sanitization, error obfuscation, database isolation
 
-🔍 Smart Search – Query by case type, number, and year
+---
 
-📄 Case Metadata – Extract parties, dates, and current status
+## 🏗 Architecture
 
-📥 PDF Downloads – Direct access to orders/judgments
+**Stack Overview**  
+- **Backend**: Flask + SQLAlchemy + Selenium  
+- **Frontend**: HTML5 + Bootstrap 5 + Vanilla JS  
+- **Database**: SQLite (easily replaceable with Postgres/MySQL)  
+- **Deployment**: Docker + Gunicorn + Render/Heroku  
+- **Testing**: Pytest & Unittest frameworks
 
-🕒 History Tracker – Persistent search log with CSV export
+**Database Models**
+- `CaseQuery` – Search queries metadata  
+- `CaseDetail` – Petitioner, respondent, dates, case status  
+- `CourtOrder` – PDF links and order details  
+- `SearchLog` – Metrics for dashboard analytics  
 
-🛡 Captcha-Friendly – Manual solve with Selenium automation
+---
 
-📱 Responsive UI – Mobile-first Bootstrap 5 design
+## 🚀 Quick Start
 
+### **Local Setup**
 
-🛠 Tech Stack
-
-Backend: Flask (Python)
-Frontend: HTML5, CSS3, Bootstrap 5
-Scraping: Selenium WebDriver (Headless Chrome)
-Database: SQLite (SQLAlchemy ORM)
-Deployment: Docker + Gunicorn on Render
-
-
-⚡ Quick Setup
-
-bash
-Copy
-Edit
-# Clone repository
-git clone <repository-url>
+#### 1. Clone the repository
+```bash
+git clone <your-repo-url>
 cd court-data-fetcher
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run locally
-python app.py
-Access via http://localhost:5000
-
-🐳 Docker Deploy
-
-bash
-Copy
-Edit
-docker build -t court-data-fetcher.
-docker run -p 5000:5000 court-data-fetcher
-🔌 API Endpoint
-GET /api/case-data/<query_id>
-Returns JSON with case details (parties, filing date, next hearing, status, etc.).
-
-🧩 Project Structure
-csharp
-Copy
-Edit
-Court-Data-Fetcher/
-├── app.py
-├── requirements.txt
-├── templates/       # HTML templates
-├── static/          # CSS/JS/images
-├── data/            # SQLite database
-├── Dockerfile
-└── README.md
-
-
-⚖ Legal & Disclaimer
-
-Fetches public data only
-
-Complies with court website’s terms of service
-
-For educational use — not for spam or misuse
-
