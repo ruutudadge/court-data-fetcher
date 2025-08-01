@@ -4,31 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Court Case Data Fetcher</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='static.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('https://cdn.pixabay.com/photo/2017/05/07/08/56/law-2290468_1280.jpg') no-repeat center center/cover;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px 40px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 26px;
+            color: #ffd700;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ffd700;
+            border: none;
+            color: #000;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #e6c200;
+        }
+
+        .result, .error {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .error {
+            color: #ff6b6b;
+        }
+    </style>
 </head>
 <body>
-    <div class="overlay"></div>
     <div class="container">
-        <h1 class="title">Court Case Data Fetcher</h1>
-        <form action="/result" method="POST" class="form-box">
-            <div class="form-group">
-                <label for="case_type">Case Type</label>
-                <select name="case_type" id="case_type">
-                    <option>Select</option>
-                    <option>Civil</option>
-                    <option>Criminal</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="case_number">Case Number</label>
-                <input type="text" name="case_number" id="case_number" placeholder="1234">
-            </div>
-            <div class="form-group">
-                <label for="filing_year">Filing Year</label>
-                <input type="text" name="filing_year" id="filing_year" placeholder="2019">
-            </div>
-            <button type="submit" class="btn">Fetch Case Details</button>
+        <h1>Court Case Data Fetcher</h1>
+        <form method="POST" action="/fetch">
+            <label>Case Type</label>
+            <select name="case_type">
+                <option value="Civil">Civil</option>
+                <option value="Criminal">Criminal</option>
+            </select>
+
+            <label>Case Number</label>
+            <input type="text" name="case_number">
+
+            <label>Filing Year</label>
+            <input type="text" name="filing_year">
+
+            <button type="submit">Fetch Case Details</button>
         </form>
+
+        {% if result %}
+            <div class="result">
+                <h3>Case Details</h3>
+                <p><b>Petitioner:</b> {{ result.petitioner }}</p>
+                <p><b>Respondent:</b> {{ result.respondent }}</p>
+                <p><b>Filing Date:</b> {{ result.filing_date }}</p>
+                <p><b>Next Hearing:</b> {{ result.next_hearing }}</p>
+            </div>
+        {% elif error %}
+            <div class="error">
+                <p>Error: {{ error }}</p>
+            </div>
+        {% endif %}
     </div>
 </body>
 </html>
