@@ -59,9 +59,6 @@ static/ – CSS, JS, and assets
 # 🚀 Setup & Deployment
 
 # 1. Local Setup
-bash
-Copy
-Edit
 
 # Create virtual environment
 python -m venv venv
@@ -78,9 +75,7 @@ python app.py
 Visit http://localhost:5000
 
 # 2. Docker Deployment
-bash
-Copy
-Edit
+
 
 docker build -t court-data-fetcher .
 
@@ -116,9 +111,6 @@ POST /api/search
 
 Request:
 
-json
-Copy
-Edit
 {
   "case_type": "W.P.(C)",
   "case_number": "1234",
@@ -145,11 +137,6 @@ Response:
 }
 # 🧪 Testing
 
-bash
-
-Copy
-
-Edit
 
 pytest
 
