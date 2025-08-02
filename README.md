@@ -164,17 +164,28 @@ Database operations ✔
 # 📂 Project Structure
 
 court-data-fetcher/
-├── app.py               # Flask entry point
-├── scraper.py           # Selenium scraping logic
-├── models.py            # SQLAlchemy models
-├── init_db.py           # Database initialization
-├── requirements.txt     # Dependencies
-├── Dockerfile           # Docker configuration
-├── docker-compose.yml   # Docker Compose setup
-├── render-build.sh      # Render build script
-├── templates/           # HTML templates
-├── static/              # CSS/JS/images
-└── tests/               # Unit & integration tests
+├── app.py           
+# Flask entry point
+├── scraper.py 
+# Selenium scraping logic
+├── models.py 
+# SQLAlchemy models
+├── init_db.py  
+# Database initialization
+├── requirements.txt
+# Dependencies
+├── Dockerfile     
+# Docker configuration
+├── docker-compose.yml 
+# Docker Compose setup
+├── render-build.sh  
+# Render build script
+├── templates/    
+# HTML templates
+├── static/       
+# CSS/JS/images
+└── tests/         
+# Unit & integration tests
 
 # 🐛 Troubleshooting
 
