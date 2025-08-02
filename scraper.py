@@ -2,32 +2,32 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
+import os
 import time
 
 def scrape_case_details(case_type, case_number, filing_year):
     chrome_options = Options()
-    chrome_options.binary_location = "/usr/bin/google-chrome"  # <-- IMPORTANT
-    chrome_options.add_argument("--headless=new")
+    chrome_options.binary_location = os.getenv("CHROME_BIN", "/usr/bin/google-chrome")
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    service = Service(os.getenv("CHROME_DRIVER_PATH", "/usr/bin/chromedriver"))
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
     try:
-        # Open eCourts portal directly
         driver.get("https://services.ecourts.gov.in/ecourtindia_v6/")
 
         # Example: Click "Case Status" (update selector if needed)
         # driver.find_element(By.LINK_TEXT, "Case Status").click()
         # time.sleep(2)
 
-        # Fill case details (replace IDs with real ones after inspecting eCourts site)
+        # Fill case details (replace IDs with actual ones after inspecting the site)
         driver.find_element(By.ID, "case_type").send_keys(case_type)
         driver.find_element(By.ID, "case_number").send_keys(case_number)
         driver.find_element(By.ID, "filing_year").send_keys(filing_year)
 
-        # Wait for captcha solving
+        # Wait for manual captcha solving
         print("Solve captcha manually in Chrome window (not possible in headless).")
         input("Press Enter after solving captcha...")
 
@@ -43,11 +43,8 @@ def scrape_case_details(case_type, case_number, filing_year):
             "petitioner": petitioner,
             "respondent": respondent,
             "filing_date": filing_date,
-            "next_hearing": next_hearing,
+            "next_hearing": next_hearing
         }
-
-    except Exception as e:
-        return {"error": str(e)}
 
     finally:
         driver.quit()
